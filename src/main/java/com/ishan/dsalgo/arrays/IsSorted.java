@@ -1,5 +1,8 @@
 package com.ishan.dsalgo.arrays;
 
+/*
+Given an integer array, return whether it's sorted or not
+ */
 public class IsSorted {
 
   public boolean isSorted(int arr[]) {

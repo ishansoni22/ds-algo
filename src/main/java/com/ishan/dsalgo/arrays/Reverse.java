@@ -1,6 +1,6 @@
 package com.ishan.dsalgo.arrays;
 
-import leetcode.easy.PrintUtil;
+import com.ishan.dsalgo.problems.warmup.PrintUtil;
 
 public class Reverse {
 

@@ -22,9 +22,6 @@ public class Deque<T> {
   }
 
   public int getRear() {
-    if (isEmpty()) {
-      return -1;
-    }
     return (front + size - 1) % capacity;
   }
 
