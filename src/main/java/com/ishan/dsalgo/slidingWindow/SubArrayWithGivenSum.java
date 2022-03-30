@@ -7,6 +7,7 @@ return if there exists a sub-array whose sum is equal to k
  */
 public class SubArrayWithGivenSum {
 
+  //Brute Force
   public boolean subarraySumNaive(int[] nums, int k) {
     for (int i = 0; i < nums.length; i++) {
       int sum = 0;
@@ -22,22 +23,30 @@ public class SubArrayWithGivenSum {
     return false;
   }
 
-  public boolean subarraySum(int[] nums, int k) {
-    int current_Sum = nums[0];
+  public boolean subarraySumMySolution(int[] nums, int k) {
+    int currentSum = 0;
+    int startWindow = 0;
 
-    if (current_Sum == k) {
-      return true;
-    }
-
-    for (int i = 1; i < nums.length; i++) {
-
-      while (current_Sum < k) {
-
+    for (int endWindow = 0; endWindow < nums.length; endWindow++) {
+      currentSum += nums[endWindow];
+      if (currentSum > k) {
+        while (currentSum > k && startWindow < endWindow) {
+          currentSum -= nums[startWindow++];
+          if (currentSum == k) {
+            return true;
+          }
+        }
       }
-
+      if (currentSum == k) {
+        return true;
+      }
     }
-
     return false;
+  }
+
+  public static void main(String[] args) {
+    SubArrayWithGivenSum s = new SubArrayWithGivenSum();
+    System.out.println(s.subarraySumMySolution(new int[]{1, 4, 20, 3, 10, 85}, 85));
   }
 
 }

@@ -1,7 +1,9 @@
-package com.ishan.dsalgo.kadaneAlgorithm;
+package com.ishan.dsalgo.slidingWindow;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /*
 Given a string s, find the length of the longest substring without repeating characters.
@@ -28,6 +30,7 @@ Notice that the answer must be a substring, "pwke" is a subsequence and not a su
  */
 public class LongestSubstringWithoutRepeatingCharacters {
 
+  //Brute Force!
   public int lengthOfLongestSubstringNaive(String s) {
     int max = 0;
     for (int i = 0; i < s.length(); i++) {
@@ -46,27 +49,21 @@ public class LongestSubstringWithoutRepeatingCharacters {
     return max;
   }
 
-  //Kadane's Algorithm?
-  //Kadane's algorithm is an iterative DP algorithm!
   public int lengthOfLongestSubstring(String s) {
-    if (s == null || s.equals("")) {
-      return 0;
-    }
-    String current = s.substring(0, 1);
-    String max = current;
+    int result = 0;
+    int startWindow = 0;
+    Set<Character> chars = new HashSet<>();
 
-    for (int i = 1; i < s.length(); i++) {
-      char c = s.charAt(i);
-      if (current.indexOf(c) == -1) {
-        current = current + c;
-      } else {
-        current = current.substring(current.lastIndexOf(c) + 1) + c;
+    for (int endWindow = 0; endWindow < s.length(); endWindow++) {
+      if (chars.contains(s.charAt(endWindow))) {
+        while (chars.contains(s.charAt(endWindow))) {
+          chars.remove(s.charAt(startWindow++));
+        }
       }
-      if (current.length() > max.length()) {
-        max = current;
-      }
+      chars.add(s.charAt(endWindow));
+      result = Math.max(result, chars.size());
     }
-    return max.length();
+    return result;
   }
 
   public static void main(String[] args) {
