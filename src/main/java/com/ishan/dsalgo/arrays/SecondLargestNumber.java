@@ -11,7 +11,6 @@ public class SecondLargestNumber {
   }
 
   public Integer secondLargest() {
-
     if (Objects.isNull(array) || array.length == 0) {
       return null;
     }
@@ -20,9 +19,7 @@ public class SecondLargestNumber {
     Integer secondLargest = null;
 
     for (int i = 1; i < array.length; i++) {
-
       if (array[i].equals(largest)) {
-
       } else if (array[i] > largest) {
         secondLargest = largest;
         largest = array[i];
@@ -33,11 +30,8 @@ public class SecondLargestNumber {
           secondLargest = array[i];
         }
       }
-
     }
-
     return secondLargest;
-
   }
 
   public static void main(String[] args) {

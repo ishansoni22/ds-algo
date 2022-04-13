@@ -1,4 +1,4 @@
-package com.ishan.dsalgo.problems.warmup;
+package com.ishan.dsalgo.searching;
 
 public class VersionControl {
 

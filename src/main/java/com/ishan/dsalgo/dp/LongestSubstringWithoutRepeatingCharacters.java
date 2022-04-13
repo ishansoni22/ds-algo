@@ -48,6 +48,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
   //Kadane's Algorithm
   //Kadane's algorithm is an iterative DP algorithm!
+  //Is this really Kadane's Algorithm? - Looks like normal String functions
   public int lengthOfLongestSubstring(String s) {
     if (s == null || s.equals("")) {
       return 0;

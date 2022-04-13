@@ -49,15 +49,12 @@ public class SquareSortedArray {
       }
       --i;
     }
-
     return sorted;
   }
 
   public static void main(String[] args) {
-
     SquareSortedArray ssa = new SquareSortedArray();
     System.out.println(Arrays.toString(ssa.sortedSquares(new int[]{-3, -2, -1})));
-
   }
 
 }

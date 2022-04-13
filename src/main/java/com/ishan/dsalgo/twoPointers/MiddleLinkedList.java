@@ -30,7 +30,6 @@ public class MiddleLinkedList {
 
     MiddleLinkedList m = new MiddleLinkedList();
     System.out.println(m.middleNode(n1).val);
-
   }
 
 }

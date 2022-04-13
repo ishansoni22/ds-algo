@@ -1,9 +1,9 @@
 package com.ishan.dsalgo.dp;
 
-public class LCS {
+public class LongestCommonSubsequence {
 
   public static void main(String[] args) {
-    LCS lcs = new LCS();
+    LongestCommonSubsequence lcs = new LongestCommonSubsequence();
     String s1 = "DAGX";
     String s2 = "BAGX";
     System.out.println(

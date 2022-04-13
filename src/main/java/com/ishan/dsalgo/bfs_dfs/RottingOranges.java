@@ -1,4 +1,4 @@
-package com.ishan.dsalgo.arrays;
+package com.ishan.dsalgo.bfs_dfs;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

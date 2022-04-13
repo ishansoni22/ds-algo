@@ -42,6 +42,7 @@ public class MaximumSubArraySum {
     return maxSum;
   }
 
+  //Consecutive Sum Technique
   public int betterBruteForce(int[] nums) {
     //Todo
     return 0;

@@ -41,7 +41,6 @@ public class DeleteNthNodeFromEnd {
     slow.next = slow.next.next;
 
     return start.next;
-
   }
 
   public ListNode removeNthFromEndNaive(ListNode head, int n) {
@@ -72,7 +71,6 @@ public class DeleteNthNodeFromEnd {
     previous.next = previous.next.next;
 
     return head;
-
   }
 
 }

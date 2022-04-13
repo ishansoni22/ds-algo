@@ -1,6 +1,6 @@
 package com.ishan.dsalgo.arrays;
 
-import com.ishan.dsalgo.problems.warmup.PrintUtil;
+import java.util.Arrays;
 
 public class Reverse {
 
@@ -18,8 +18,7 @@ public class Reverse {
   public static void main(String[] args) {
     Reverse reverse = new Reverse();
     int[] input = {1, 2, 3, 4, 5};
-    PrintUtil.printIntArray(reverse.reverse(input));
-
+    System.out.println(Arrays.toString(reverse.reverse(input)));
   }
 
 }
