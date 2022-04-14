@@ -1,5 +1,8 @@
 package com.ishan.dsalgo.prefixSum;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /*
 Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.
 
@@ -32,7 +35,19 @@ public class SubArraySumEqualsK {
   }
 
   public int subarraySum(int[] nums, int k) {
-    return -1;
+    int count = 0;
+    int sum = 0;
+    Map<Integer, Integer> prefixSumOccurrenceMap = new HashMap<>();
+    prefixSumOccurrenceMap.put(0, 1);
+
+    for (int i = 0; i < nums.length; i++) {
+      sum += nums[i];
+      if (prefixSumOccurrenceMap.containsKey(sum - k)) {
+        count += prefixSumOccurrenceMap.get(sum - k);
+      }
+      prefixSumOccurrenceMap.put(sum, prefixSumOccurrenceMap.getOrDefault(sum, 0) + 1);
+    }
+    return count;
   }
 
   public static void main(String[] args) {
