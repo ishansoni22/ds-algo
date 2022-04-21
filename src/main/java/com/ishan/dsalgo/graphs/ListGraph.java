@@ -174,12 +174,101 @@ public class ListGraph<T> {
     for (int adjIdx : adjacentVertices) {
       T adjacent = vertexSpace.get(adjIdx);
       if (!discovered.contains(adjacent)) {
-        detectLoop(discovered, adjacent, source);
+        return detectLoop(discovered, adjacent, source);
       } else if (adjacent != parent) {
         return true;
       }
     }
     return false;
+  }
+
+  public boolean detectLoopDirectedDFS() {
+    Set<T> discovered = new HashSet<>();
+    Set<T> recursionTree = new HashSet<>();
+    for (T source : vertexSpace) {
+      if (!discovered.contains(source)) {
+        if (detectLoopDirectedDFS(source, discovered, recursionTree)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  private boolean detectLoopDirectedDFS(T source, Set<T> discovered, Set<T> recursionTree) {
+    discovered.add(source);
+    recursionTree.add(source);
+
+    ArrayList<Integer> adjacentVertices = graph.get(mappingTable.get(source));
+
+    for (Integer adj : adjacentVertices) {
+      T adjacent = vertexSpace.get(adj);
+      if ((!discovered.contains(adjacent))
+          && detectLoopDirectedDFS(adjacent, discovered, recursionTree)) {
+        return true;
+      } else if (recursionTree.contains(adjacent)) {
+        return true;
+      }
+    }
+    recursionTree.remove(source);
+    return false;
+  }
+
+  public boolean detectCycleDirectedDFSCLRS() {
+    int[] visited = new int[vertexSpace.size()]; //0 - All are initially unvisited
+    for (int i = 0; i < vertexSpace.size(); i++) {
+      //Only visit unvisited vertices
+      if (visited[i] == 0 && detectCycleDirectedDFSCLRS(i, visited)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private boolean detectCycleDirectedDFSCLRS(int i, int[] visited) {
+    visited[i] = -1; //Grey
+    ArrayList<Integer> adjacentVertices = graph.get(i);
+
+    for (Integer adjacent : adjacentVertices) {
+      if (visited[adjacent] == -1) {
+        return true;
+      } else if (visited[adjacent] == 0 && detectCycleDirectedDFSCLRS(adjacent, visited)) {
+        return true;
+      }
+    }
+
+    visited[i] = 1; //Black
+    return false;
+  }
+
+  public void topologicalSortingKahn() {
+    int[] indegree = new int[vertexSpace.size()];
+    for (List<Integer> adj : graph) {
+      for (int adjIdx : adj) {
+        indegree[adjIdx]++;
+      }
+    }
+
+    Queue<Integer> q = new ArrayDeque<>();
+
+    for (int i = 0; i < indegree.length; i++) {
+      if (indegree[i] == 0) {
+        q.offer(i);
+      }
+    }
+
+    while (!q.isEmpty()) {
+      int u = q.poll();
+      System.out.println("Processing " + vertexSpace.get(u));
+
+      for (int v : graph.get(u)) {
+        indegree[v]--;
+        if (indegree[v] == 0) {
+          q.offer(v);
+        }
+      }
+    }
+
   }
 
   public static void main(String[] args) {
